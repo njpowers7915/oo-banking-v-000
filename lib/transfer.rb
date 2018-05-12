@@ -13,7 +13,7 @@ class Transfer
   end
   
   def sender_not_valid?
-    if @sender.valid? != true
+    if @sender.valid? == true
       @status = "rejected"
       "Transaction rejected. Please check your account balance."
     end
