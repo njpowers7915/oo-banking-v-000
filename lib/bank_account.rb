@@ -29,6 +29,7 @@ class BankAccount
   
   def deposit(amount)
     @balance += amount.to_f
+    @balance
   end
   
   def name
