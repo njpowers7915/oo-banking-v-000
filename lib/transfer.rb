@@ -1,5 +1,6 @@
 class Transfer
   attr_accessor :sender, :receiver, :amount, :status
+  @@executed_transfers = []
   
   def initialize(sender, receiver, amount)
     @sender = sender
@@ -23,6 +24,7 @@ class Transfer
       @sender.deposit(sender_amount)
       @receiver.deposit(receiver_amount)
       @status = "complete"
+      @@executed_transfers << self
     elsif is_sender_valid? == false
       @status = "rejected"
       "Transaction rejected. Please check your account balance."
