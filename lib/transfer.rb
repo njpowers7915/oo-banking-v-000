@@ -17,14 +17,16 @@ class Transfer
   end
   
   def execute_transaction
-    if self.valid? && @status == "pending"
+    if sender_valid? == false
+      @status = "rejected"
+    elsif self.valid? && @status == "pending"
       sender_amount = @amount * -1
       receiver_amount = @amount
       @sender.deposit(sender_amount)
       @receiver.deposit(receiver_amount)
       @status = "complete"
     elsif self.vaild? == false
-      if @sender.valid == false
+      if @sender.valid? == false
     end
   end
   
