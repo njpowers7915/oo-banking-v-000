@@ -1,7 +1,6 @@
 class BankAccount
   attr_accessor :balance, :status
   @@all = []
-  @account_history = [@balance]
   
   def save_account
     @@all << self
@@ -16,8 +15,6 @@ class BankAccount
   def initiate_transfer(receiver, amount)
     receiver = self.find_or_create_by_name(receiver)
     Transfer.new(self, receiver, amount)
-    # if new transfer is approved
-    @account_history << -amount
   end
   
   def self.find_or_create_by_name(account_name)
