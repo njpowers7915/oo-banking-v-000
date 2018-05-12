@@ -23,6 +23,9 @@ class Transfer
       @sender.deposit(sender_amount)
       @receiver.deposit(receiver_amount)
       @status = "complete"
+    elsif is_sender_valid? == false
+      @status = "rejected"
+      ""
     end
   end
   
