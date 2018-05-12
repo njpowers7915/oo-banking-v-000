@@ -9,15 +9,11 @@ class Transfer
   end
   
   def valid?
-    @new_sender_balance = @sender.balance - @amount
-    @sender.valid? && @receiver.valid? && (@new_sender_balance > 0)
+    self.is_sender_valid? && @receiver.valid?
   end
   
-  def sender_not_valid?
-    if @sender.valid? == true
-      @status = "rejected"
-      "Transaction rejected. Please check your account balance."
-    end
+  def is_sender_valid?
+    (@sender.balance - @amount) > 0 && @sender.valid?
   end
   
   def execute_transaction
