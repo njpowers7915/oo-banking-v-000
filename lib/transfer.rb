@@ -20,7 +20,6 @@ class Transfer
   end
   
   def execute_transaction
-    self.sender_not_valid?
     if self.valid? && @status == "pending"
       sender_amount = @amount * -1
       receiver_amount = @amount
