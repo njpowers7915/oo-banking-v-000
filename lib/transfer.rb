@@ -9,8 +9,8 @@ class Transfer
   end
   
   def valid?
-    @sender.
-    @sender.valid? && @receiver.valid?
+    @new_sender_balance = @sender.balance - @amount
+    @sender.valid? && @receiver.valid? && (@new_sender_balance > 0)
   end
   
   def sender_not_valid?
