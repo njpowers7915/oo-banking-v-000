@@ -12,22 +12,19 @@ class Transfer
     @sender.valid? && @receiver.valid?
   end
   
-  def bad_transfer?
-    if @sender.balance <= 0 || @sender.status != "open"
-      @status = "rejected"
-      "Transaction rejected. Please check your account balance."
-    end
+  def sender_valid?
+    @sender.valid?
   end
-    
   
   def execute_transaction
-    self.bad_transfer?
     if self.valid? && @status == "pending"
       sender_amount = @amount * -1
       receiver_amount = @amount
       @sender.deposit(sender_amount)
       @receiver.deposit(receiver_amount)
       @status = "complete"
+    elsif self.vaild? == false
+      if @sender.valid == false
     end
   end
   
